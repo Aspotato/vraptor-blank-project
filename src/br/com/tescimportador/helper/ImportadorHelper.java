@@ -65,9 +65,15 @@ public class ImportadorHelper {
 				vwDocAduanaMapa.setData_Doc_Importacao(Util.stringToDate(Util.nw(line[10])));
 				vwDocAduanaMapa.setData_Chegada_Doc_Impo(Util.stringToDate(Util.nw(line[11])));
 				vwDocAduanaMapa.setNome_Exportador(Util.nw(line[12]));
-				vwDocAduanaMapa.setPeso_Bruto(new BigDecimal(Util.nw(line[13])));
-				vwDocAduanaMapa.setPeso_Liquido(new BigDecimal(Util.nw(line[14])));
-				vwDocAduanaMapa.setData_Desembaraco(Util.stringToDate(Util.nw(line[15])));
+				if(!Util.nw(line[13]).equals("NULL")){
+					vwDocAduanaMapa.setPeso_Bruto(new BigDecimal(Util.nw(line[13])));
+				}
+				if(!Util.nw(line[14]).equals("NULL")){
+					vwDocAduanaMapa.setPeso_Liquido(new BigDecimal(Util.nw(line[14])));					
+				}
+				if(!Util.nw(line[15]).equals("NULL")){
+					vwDocAduanaMapa.setData_Desembaraco(Util.stringToDate(Util.nw(line[15])));					
+				}
 				vwDocAduanaMapa.setPais_Ori_Mercadoria(null);
 
 				GenericDAOOpweb.saveOrUpdate(vwDocAduanaMapa);
